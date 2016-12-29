@@ -84,7 +84,7 @@ var main = function() {
   updateSettings();
   chrome.browserAction.onClicked.addListener(function() {
     chrome.tabs.query({active: true}, function(tabs) {
-      var tab = tabs[0];
+      var tab = tabs.filter((tab) => tab.url.indexOf('bluecore') > -1)[0];
 
       chrome.tabs.executeScript(tab.id, {
         file: 'commands/get_domain.js'
